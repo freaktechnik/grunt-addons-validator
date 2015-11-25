@@ -11,16 +11,9 @@
 var addonValidator = require("addons-validator")
 
 module.exports = function(grunt) {
-
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
-
   grunt.registerMultiTask('validate_addon', 'Check an extension for validity', function() {
     // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
+    var options = this.options({});
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
@@ -44,5 +37,4 @@ module.exports = function(grunt) {
       grunt.log.writeln('File "' + f.dest + '" created.');
     });
   });
-
 };
