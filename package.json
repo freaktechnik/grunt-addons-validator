@@ -1,0 +1,45 @@
+{
+  "name": "grunt-addons-validator",
+  "description": "Check an extension for validity",
+  "version": "0.1.0",
+  "homepage": "https://github.com/freaktechnik/grunt-addons-validator",
+  "author": {
+    "name": "Martin Giger",
+    "email": "martin@humanoids.be",
+    "url": "http://humanoids.be"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freaktechnik/grunt-addons-validator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/freaktechnik/grunt-addons-validator/issues"
+  },
+  "licenses": [
+    {
+      "type": "MPL-2.0",
+      "url": "https://github.com/freaktechnik/grunt-addons-validator/blob/master/LICENSE-MPL-2.0"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "dependencies": {
+    "addons-validator": "0.0.7"
+  }
+}
