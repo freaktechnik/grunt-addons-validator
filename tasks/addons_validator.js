@@ -8,33 +8,43 @@
 
 'use strict';
 
-var addonValidator = require("addons-validator")
+var addonValidator = require("addons-validator");
+var async = require("async");
 
 module.exports = function(grunt) {
-  grunt.registerMultiTask('validate_addon', 'Check an extension for validity', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({});
+    grunt.registerMultiTask('validate_addon', 'Check an extension for validity', function() {
+        var done = this.async(), count = 0;
+        // Merge task-specific and/or target-specific options with these defaults.
+        var options = this.options({});
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        var validator = addonValidator.createInstance({
-          _: [filepath]
+        // Iterate over all specified file groups.
+        async.each(this.filesSrc, function(filepath, callback) {
+            if (!grunt.file.exists(filepath)) {
+                grunt.log.warn('Source file "' + filepath + '" not found.');
+                callback("A file was not found");
+            }
+            else {
+                count++;
+                // Read file source.
+                var validator = addonValidator.createInstance({
+                  _: [filepath]
+                }).run().then(function() {
+                    if(validator.output['error'].length > 0) {
+                        callback("Validation failed");
+                    }
+                    else {
+                        callback();
+                    }
+                });
+            }
+        }, function(error) {
+            if(error) {
+                done(false);
+            }
+            else {
+                grunt.log.ok("All "+count+" add-ons have been validated");
+                done(true);
+            }
         });
-      }).join(grunt.util.normalizelf(options.separator));
-
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
     });
-  });
 };

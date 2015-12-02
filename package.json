@@ -37,9 +37,16 @@
     "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "jetpack",
+    "add-on",
+    "validate",
+    "amo",
+    "validator",
+    "extension"
   ],
   "dependencies": {
-    "addons-validator": "0.0.7"
+    "addons-validator": "0.0.7",
+    "async": "^1.5.0"
   }
 }
