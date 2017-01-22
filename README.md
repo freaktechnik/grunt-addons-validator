@@ -1,5 +1,7 @@
 # grunt-addons-validator
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/freaktechnik/grunt-addons-validator.svg)](https://greenkeeper.io/)
+
 > Check an extension for validity
 
 Using the same validator as AMO this plugin validates a directory or xpis that
